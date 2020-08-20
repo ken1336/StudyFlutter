@@ -71,7 +71,7 @@ $ cd my_app
 $ flutter run
 ~~~
 
-![image](./images/Demo_app_launch.png){:width="50" height="150"}
+![image](./images/Demo_app_launch.png=50x150)
 
 잘 실행되는것 같다.
 
