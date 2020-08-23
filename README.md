@@ -77,7 +77,7 @@ $ flutter run
 
 ### Next
 
-여기까지 Flutter 환경 설정이 끝났고, 이어서 데모앱을 가지고 튜토리얼을 진행해 보겠다.
+여기까지 Flutter 환경 설정이 끝났고, 이어서 
 
 
 참고자료: https://flutter.dev/docs/get-started/install/macos#update-your-path
