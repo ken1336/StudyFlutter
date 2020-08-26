@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import './main_1.dart';
 import './TestComponent1.dart';
+import './TestNavigatorView.dart';
 
 
 void main() => runApp(MyApp());
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Startup Name Generator',            
-      home: TestComponent(),
+      home: TestRouter1(),
       
 
     );
