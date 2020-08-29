@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import './testapp/TestApp.dart';
+import './BottomNavigator.dart';
 
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
     return MaterialApp(
       title: 'Startup Name Generator',            
-      home: App(),
+      home: Scaffold(
+        appBar: AppBar(title: Text("Hello"),),
+        body: TestRouter(),
+      ),
       
 
     );
