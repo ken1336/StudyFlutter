@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './FriendView.dart';
+import './Network.dart';
 
 class TestRouter extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class _TestBottomNavigatorState extends State<TestBottomNavigator> {
   var _currentIndex = 0;
   final List<Widget> _childWidget = [
     _HomeWidget(),
-    _AppWidget(),
+    NetworkView(),
     FriendView()
   ];
 
@@ -71,6 +72,7 @@ class _HomeWidgetState extends State<_HomeWidget> with AutomaticKeepAliveClientM
     super.build(context);
     print(_count);
     return Scaffold(
+        appBar: AppBar(title: Text("Home"),),
         body: Text('Home count: $_count'),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.plus_one),
@@ -102,7 +104,8 @@ class _AppWidgetState extends State<_AppWidget> with AutomaticKeepAliveClientMix
           onPressed: () => setState(() {
             _count += 1;
           }),
-        ));
+        )
+      );
   }
 }
 

@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Startup Name Generator',            
       home: Scaffold(
-        appBar: AppBar(title: Text("Hello"),),
+
         body: TestRouter(),
       ),
       
