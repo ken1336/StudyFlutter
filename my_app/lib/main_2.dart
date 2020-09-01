@@ -7,11 +7,9 @@ void main() {
   ));
 }
 
-class TestWidgetLauncher extends Widget{
-
-
+class TestWidgetLauncher extends Widget {
   Widget _widget;
-  TestWidgetLauncher(Widget widget){
+  TestWidgetLauncher(Widget widget) {
     this._widget = widget;
   }
 
@@ -20,10 +18,8 @@ class TestWidgetLauncher extends Widget{
     return this._widget.createElement();
     throw UnimplementedError();
   }
-
-
-  
 }
+
 class MyMaterialApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
