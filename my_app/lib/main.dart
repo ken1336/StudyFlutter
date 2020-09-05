@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import './testapp/TestApp.dart';
-import './bloc/Home.dart';
+import './blocpattern/Home.dart';
 
 
 void main() => runApp(MyApp());
