@@ -24,7 +24,8 @@ class RestState {
 
   }
   RestState pop(){
-    return RestState(restList: restList ?? this.restList.removeLast());
+    this.restList.remove(this.restList.first);
+    return RestState(restList: restList ?? this.restList);
   }
 
   // RestState copyWith({List<Rest> todoList}) {

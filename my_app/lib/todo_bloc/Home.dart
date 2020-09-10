@@ -3,6 +3,9 @@ import 'package:my_app/todo_bloc/ui/TodoList.dart';
 import 'package:my_app/todo_bloc/bloc/TodoListBloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:my_app/todo_bloc/bloc/RestBloc.dart';
+import 'package:my_app/todo_bloc/ui/RestList.dart';
+
 
 //import 'blocs/todoBloc/bloc.dart';
 class Home extends StatefulWidget{
@@ -19,25 +22,44 @@ class HomeState extends State<Home>{
   //HomeState(value) : _value = value;
 
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-
+  Widget build(BuildContext context){
     return MultiBlocProvider(
       providers: [
-        BlocProvider<TodoBloc>(
-          create: (BuildContext context) => TodoBloc(),
+        BlocProvider<RestBloc>(
+          create: (BuildContext context)=> RestBloc(),
+        
         ),
       ],
-      
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(primarySwatch: Colors.blue),
-        home: TodoList(),
+        home: RestList(),
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(title: Text(_value)),
-    //   body: TodoPage(),
-    //   );
-  }}
+  }
+
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+
+  //   return MultiBlocProvider(
+  //     providers: [
+  //       BlocProvider<TodoBloc>(
+  //         create: (BuildContext context) => TodoBloc(),
+           
+  //       ),
+        
+  //     ],
+      
+  //     child: MaterialApp(
+  //       debugShowCheckedModeBanner: false,
+  //       title: 'Flutter Demo',
+  //       theme: ThemeData(primarySwatch: Colors.blue),
+  //       home: TodoList(),
+  //     ),
+  //   );
+  //   // return Scaffold(
+  //   //   appBar: AppBar(title: Text(_value)),
+  //   //   body: TodoPage(),
+  //   //   );
+  // }
+}
