@@ -12,12 +12,22 @@ class RestAPI {
 
   Future<Rest> getMessage() async {
     print("call getMessage");
-
-    var data = await _client
-        .post(Uri.parse(_url))
-        .then((res) => res.body)
-        .then(json.decode);
-    print("data: "+ data);
-    return null;
+    
+    final response = await _client
+        .post(Uri.parse(_url));
+    if(response.statusCode == 200){
+      var data = jsonDecode(response.body);
+      Rest _result = Rest(id: data["id"], message:data["message"] ); 
+      print("_result: "+ _result.message);
+      return _result;
+    }else{
+      print("Rest call error");
+      return null;
+    }
+        
+        
+    
+    
+    
   }
 }

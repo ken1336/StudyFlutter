@@ -9,27 +9,33 @@ class RestList extends StatefulWidget {
 }
 
 class _RestList extends State<RestList> {
-  RestBloc _RestBloc;
+  RestBloc _restBloc;
   @override
   void initState() {
     super.initState();
-    _RestBloc = BlocProvider.of<RestBloc>(context);
-    _RestBloc.add(RestPop());
+    _restBloc = BlocProvider.of<RestBloc>(context);
+    _restBloc.add(RestPop());
   }
 
   @override
   Widget build(BuildContext context){
     return BlocListener(
-      bloc:_RestBloc,
+      bloc:_restBloc,
       listener: (BuildContext context, RestState state) {},
       child: Scaffold(
         appBar: AppBar(
             centerTitle: true,
             title: Text("Rest Test"),
         ),
+        body: BlocBuilder<RestBloc,RestState>(
+          bloc: _restBloc,
+          builder: (BuildContext context, RestState state){
+            return 
+            Text(state.restMessage);
+          }),
         floatingActionButton: FloatingActionButton(
         child: Icon(Icons.plus_one),
-        onPressed: () => _RestBloc.add(RestPush()),
+        onPressed: () => _restBloc.add(RestPush()),
       ),
       )
     );

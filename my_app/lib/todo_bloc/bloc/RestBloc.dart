@@ -26,9 +26,14 @@ class RestBloc extends Bloc<RestEvent, RestState> {
   Stream<RestState> _mapRestPushToState() async* {
     print("call _mapRestPushToState");
     RestAPI _restAPI = RestAPI();
-    var _result;
-    await _restAPI.getMessage().then((value) => _result = value);
-    print(_result);
-    yield state.push(_result);
+    Rest _result;
+    _result =_restAPI.getMessage() as Rest;
+    assert(_result != null);
+    yield state.update(_result);
+    // assert(_result != null);
+    // print("result: "+_result.message);
+    // state.update(_result);
   }
+
+
 }
