@@ -11,28 +11,30 @@ class RestBloc extends Bloc<RestEvent, RestState> {
   @override
   Stream<RestState> mapEventToState(RestEvent event) async* {
     print(event.toString());
-    if (event is RestPop) {
-      yield* _mapRestPopToState();
-    } else if (event is RestPush) {
-      yield* _mapRestPushToState();
+    if (event is RestInit) {
+      yield* _mapRestInitToState();
+    } else if (event is RestUpdate) {
+      yield* _mapRestUpdateState();
     }
   }
 
-  Stream<RestState> _mapRestPopToState() async* {
+  Stream<RestState> _mapRestInitToState() async* {
 
 
-    yield state.pop();
+    yield state.init();
   }
-  Stream<RestState> _mapRestPushToState() async* {
-    print("call _mapRestPushToState");
+  Stream<RestState> _mapRestUpdateState() async* {
+    print("call _mapRestUpdateState");
     RestAPI _restAPI = RestAPI();
     Rest _result;
-    _result =_restAPI.getMessage() as Rest;
-    assert(_result != null);
+    try{
+      _result = await _restAPI.getMessage();
+    }catch(e){
+      print(e.toString());
+    }
+
     yield state.update(_result);
-    // assert(_result != null);
-    // print("result: "+_result.message);
-    // state.update(_result);
+
   }
 
 

@@ -14,7 +14,7 @@ class _RestList extends State<RestList> {
   void initState() {
     super.initState();
     _restBloc = BlocProvider.of<RestBloc>(context);
-    _restBloc.add(RestPop());
+    _restBloc.add(RestInit());
   }
 
   @override
@@ -35,7 +35,7 @@ class _RestList extends State<RestList> {
           }),
         floatingActionButton: FloatingActionButton(
         child: Icon(Icons.plus_one),
-        onPressed: () => _restBloc.add(RestPush()),
+        onPressed: () => _restBloc.add(RestUpdate()),
       ),
       )
     );

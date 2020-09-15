@@ -8,23 +8,19 @@ abstract class RestEvent extends Equatable {
 }
 
 //해당 페이지가 그려질때 일어나야 하는 event이다.
-class RestPop extends RestEvent {
+
+class RestInit extends RestEvent {
   @override
   String toString() {
 
-    return "RestPop";
+    return "Rest Event:init";
   }
 }
 
-//각각의 todolist 들의 check box들이 클릭이 됐을때 일어날 event이다.
-//indes를 받게 되는 이유는 ListView.builder를 사용하여 화면을 그려줄 예정이기 때문이다.
-class RestPush extends RestEvent {
-  RestPush(){
-    print("call push");
-  }
+class RestUpdate extends RestEvent {
   @override
   String toString() {
 
-    return "RestPush";
+    return "Rest Event:update";
   }
 }
