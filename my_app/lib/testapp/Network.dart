@@ -24,6 +24,7 @@ class NetworkViewState extends State<NetworkView> {
         ));
   }
 
+
   void _requestTest() {
     _fetchString().then((String result){
       setState(() {
@@ -32,7 +33,7 @@ class NetworkViewState extends State<NetworkView> {
     });
   }
 }
-
+ 
 
 Future<String> _fetchString() async {
   final response = await http.get('http://localhost:3001/test');

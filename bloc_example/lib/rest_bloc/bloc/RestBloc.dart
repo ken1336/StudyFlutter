@@ -1,16 +1,17 @@
 import 'package:bloc/bloc.dart';
-import 'package:my_app/todo_bloc/model/Rest.dart';
-import 'package:my_app/todo_bloc/bloc/RestEvent.dart';
-import 'package:my_app/todo_bloc/bloc/RestState.dart';
-import 'package:my_app/todo_bloc/repository/RestAPI.dart';
+import 'package:bloc_example/rest_bloc/model/Rest.dart';
+import 'package:bloc_example/rest_bloc/bloc/RestEvent.dart';
+import 'package:bloc_example/rest_bloc/bloc/RestState.dart';
+import 'package:bloc_example/rest_bloc/repository/RestAPI.dart';
+
 class RestBloc extends Bloc<RestEvent, RestState> {
   @override
   // 가장 먼저 일어나게 state의 초기화 작업
   RestState get initialState => RestState.empty();
+  RestAPI _restAPI = RestAPI();
 
   @override
   Stream<RestState> mapEventToState(RestEvent event) async* {
-    print(event.toString());
     if (event is RestInit) {
       yield* _mapRestInitToState();
     } else if (event is RestUpdate) {
@@ -19,22 +20,16 @@ class RestBloc extends Bloc<RestEvent, RestState> {
   }
 
   Stream<RestState> _mapRestInitToState() async* {
-
-
     yield state.init();
   }
+
   Stream<RestState> _mapRestUpdateState() async* {
-    RestAPI _restAPI = RestAPI();
     Rest _result;
-    try{
-      _result = await _restAPI.getMessage();
-    }catch(e){
-      print("Catch error"+ e.toString());
+    try {
+      _result = await this._restAPI.getMessage();
+      yield state.update(_result);
+    } catch (e) {
+      print("Catch error " + e.toString());
     }
-
-    yield state.update(_result);
-
   }
-
-
 }

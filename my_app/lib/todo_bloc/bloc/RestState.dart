@@ -14,8 +14,6 @@ class RestState {
 //(더미 데이터를 만들어 사용하는 것이다.)
   factory RestState.empty() => RestState(restMessage:  "default");
 
-
-
   RestState update(Rest rest) => RestState(restMessage: rest.message);
 
   RestState init() => RestState(restMessage:"Hello");
