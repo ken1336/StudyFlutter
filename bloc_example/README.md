@@ -56,11 +56,11 @@ BLoC를 구현하기 위해 bloc, model, repository, ui 디렉토리를 만들�
 
 ### model, Rest
 
-
 <img src="../images/bloc_Rest_model.png" width="550" height="300">
 
 Backend서버와 통신하기 위한 데이터 모델을 정의한다.
 간단한 메시지를 주고받기 위해 메시지 id와 String으로 된 문자열을 정의했다.
+
 
 
 ### repository, Rest API, API Server
@@ -77,6 +77,8 @@ BLoC pattern에서는 repository는 business logic 처리, backend와의 통신�
 
 예제 어플의 Rest API통신을 테스트 하기 위해 nodejs로 간이 서버를 만들었다. "/message" url로 post 요청이 오면 위에서 정의한 Rest 모델을 response한다.
 
+
+
 ### bloc, RestBloc, RestEvent, RestState
 
 #### RestState
@@ -86,11 +88,15 @@ BLoC pattern에서는 repository는 business logic 처리, backend와의 통신�
 RestState 클래스는 BLoC에서 관리하는 상태 클래스이다.
 데이터 모델인 Rest를 맴버로 관리하며, 상태를 초기화, 업데이트 하는 메소드를 제공한다. ui가 구독하는 state로, 이 state들이 ui에 그대로 전달되어 view가 구성된다. 
 
+
+
 #### RestEvent
 
 <img src="../images/bloc_RestEvent_code.png" width="500" height="250">
 
 RestEvent 클래스는 BLoC에 전달되는 event 클래스이다. 슈퍼 클래스인 RestEvent를 추상화 하여 RestEvent들을 정의하였다. event클래스 자체에는 아무 기능이 없지만, ui에서 event가 발생했을때 이를 BLoC에 전달하기 위해 사용한다. Equatable 클래스를 상속받아 자식 클래스들끼리 비교할 수 있도록 했다.
+
+
 
 #### RestBloc
 
@@ -106,11 +112,13 @@ RestBloc은 flutter_bloc에서 제공하는 bloc 클래스를 상속받는다. b
 * async*, yield 키워드는 Stream에 데이터 변경을 알리는 동작이다. yield로 state를 전달하면 구독하고 있는 ui들이 변경 이벤트를 감지하여 컴포넌트를 다시 랜더링 하게 된다.
 
 
-##### Stream, async* + yield
+
 
 ### ui, RestUI
 
  BLoC pattern의 목적에 맞게 ui에서는 데이터와 관련된 state들을 가지지 않는다. 대신 bloc 정의된 state를 구독하고 사용자의 조작에 따라 연결된 bloc Event를 전달하기만 한다.
+
+
 
 #### Home.dart
 
@@ -121,8 +129,9 @@ RestUI 클래스를 구현하기 전 RestBloc을 생성하고 하위 컴포넌�
 BLoC pattern에서 컴포넌트들은 Provider를 통해 bloc에 접근한다. BlocProvider는 bloc을 생성, 관리하며 컴포넌트들이 구독할 수 있는 Stream을 제공한다. 
 앱에서 RestUI에 접근하기 전 Home Widget을 만들어 하위 Widget들을 MultiBlocProvider로 감싼다. MultiBlocProvider의 BlocProvider로 RestBloc을 생성한다. 이제 MultiBlocProvider 하위의 모든 컴포넌트들은 RestBloc에 접근 가능하며, Stream을 통해 state를 구독할 수 있다.
 
-#### RestUI
 
+
+#### RestUI
 
 <img src="../images/bloc_RestUI_code.png" width="600" height="600">
 
