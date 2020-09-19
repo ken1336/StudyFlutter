@@ -6,7 +6,6 @@ import 'package:bloc_example/rest_bloc/repository/RestAPI.dart';
 
 class RestBloc extends Bloc<RestEvent, RestState> {
   @override
-  // 가장 먼저 일어나게 state의 초기화 작업
   RestState get initialState => RestState.empty();
   RestAPI _restAPI = RestAPI();
 

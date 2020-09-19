@@ -2,9 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-abstract class RestEvent extends Equatable {
-  RestEvent([List props = const []]) : super(props);
-}
+abstract class RestEvent extends Equatable {}
 
 class RestInit extends RestEvent {
   @override
