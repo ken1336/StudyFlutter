@@ -71,14 +71,13 @@ $ cd my_app
 $ flutter run
 ~~~
 
-![image](./images/Demo_app_launch.png=50x150)
+
+<img src="./images/Demo_app_launch.png" width="150" height="300">
 
 잘 실행되는것 같다.
 
 ### Next
-
-여기까지 Flutter 환경 설정이 끝났고, 이어서 
-
+...
 
 참고자료: https://flutter.dev/docs/get-started/install/macos#update-your-path
  
