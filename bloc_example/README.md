@@ -45,7 +45,7 @@ Pub에서 제공하는 BLoC 라이브러리와 Event class를 정의하기 위�
 
 ### 디렉토리 구조
 
-![image](../images/bloc_directory_structure.png)
+<img src="../images/bloc_directory_structure.png" width="250" height="400">
 
 BLoC를 구현하기 위해 bloc, model, repository, ui 디렉토리를 만들었다. 
 1. bloc - BLoC 클래스와 BLoC에 전달되는 event, 데이터인 state 클래스
@@ -57,7 +57,7 @@ BLoC를 구현하기 위해 bloc, model, repository, ui 디렉토리를 만들�
 ### model, Rest
 
 
-![image](../images/bloc_Rest_model.png)
+<img src="../images/bloc_Rest_model.png" width="550" height="300">
 
 Backend서버와 통신하기 위한 데이터 모델을 정의한다.
 간단한 메시지를 주고받기 위해 메시지 id와 String으로 된 문자열을 정의했다.
@@ -73,21 +73,22 @@ BLoC pattern에서는 repository는 business logic 처리, backend와의 통신�
  * 12 라인에서 response 코드를 확인하여 200번이 아닌 경우 Exception을 발생시킨다.
  * 15 라인에서는 response의 body를 json으로 변환하는 jsonDecode함수를 사용했다.
 
-![image](../images/bloc_server_code.png)
+<img src="../images/bloc_server_code.png" width="700" height="400">
 
 예제 어플의 Rest API통신을 테스트 하기 위해 nodejs로 간이 서버를 만들었다. "/message" url로 post 요청이 오면 위에서 정의한 Rest 모델을 response한다.
 
 ### bloc, RestBloc, RestEvent, RestState
 
 #### RestState
-![image](../images/bloc_RestState_code.png)
+
+<img src="../images/bloc_RestState_code.png" width="700" height="400">
 
 RestState 클래스는 BLoC에서 관리하는 상태 클래스이다.
 데이터 모델인 Rest를 맴버로 관리하며, 상태를 초기화, 업데이트 하는 메소드를 제공한다. ui가 구독하는 state로, 이 state들이 ui에 그대로 전달되어 view가 구성된다. 
 
 #### RestEvent
 
-![image](../images/bloc_RestEvent_code.png)
+<img src="../images/bloc_RestEvent_code.png" width="500" height="250">
 
 RestEvent 클래스는 BLoC에 전달되는 event 클래스이다. 슈퍼 클래스인 RestEvent를 추상화 하여 RestEvent들을 정의하였다. event클래스 자체에는 아무 기능이 없지만, ui에서 event가 발생했을때 이를 BLoC에 전달하기 위해 사용한다. Equatable 클래스를 상속받아 자식 클래스들끼리 비교할 수 있도록 했다.
 
@@ -96,7 +97,8 @@ RestEvent 클래스는 BLoC에 전달되는 event 클래스이다. 슈퍼 클래
 Rest API통신을 BLoC pattern을 사용하여 구현하기 위한 state, event, 데이터 모델, repository가 완성되었다.
 이제 각 구성 요소들과 ui를 연결하는 BLoC을 구현한다.
 
-![image](../images/bloc_RestBloc_code.png)
+<img src="../images/bloc_RestBloc_code.png" width="600" height="800">
+
 
 RestBloc은 flutter_bloc에서 제공하는 bloc 클래스를 상속받는다. bloc 클래스는 ui에서 전달된 event와 businiess logic을 연결한다. 
 * 13 라인의 mapEventToState 메소드를 통해 event를 전달받는다. event의 종류에 따라(init event, update event) 적절한 business logic을 호출한다.
@@ -114,13 +116,16 @@ RestBloc은 flutter_bloc에서 제공하는 bloc 클래스를 상속받는다. b
 
 RestUI 클래스를 구현하기 전 RestBloc을 생성하고 하위 컴포넌트들이 RestBloc에 접근할 수 있도록 하는 작업이 필요하다.
 
-![image](../images/bloc_Home_code.png)
+<img src="../images/bloc_Home_code.png" width="650" height="600">
 
 BLoC pattern에서 컴포넌트들은 Provider를 통해 bloc에 접근한다. BlocProvider는 bloc을 생성, 관리하며 컴포넌트들이 구독할 수 있는 Stream을 제공한다. 
 앱에서 RestUI에 접근하기 전 Home Widget을 만들어 하위 Widget들을 MultiBlocProvider로 감싼다. MultiBlocProvider의 BlocProvider로 RestBloc을 생성한다. 이제 MultiBlocProvider 하위의 모든 컴포넌트들은 RestBloc에 접근 가능하며, Stream을 통해 state를 구독할 수 있다.
 
 #### RestUI
-![image](../images/bloc_RestUI_code.png)
+
+
+<img src="../images/bloc_RestUI_code.png" width="600" height="600">
+
 
 * 16라인 - bloc에 접근할 수 있도록 _restBloc을 BlocProvider로 초기화 한다.
 * 17라인 - bloc.add(Event event) 메소드를 통해 bloc에 RestInit event를 전달한다.
@@ -132,9 +137,8 @@ BLoC pattern에서 컴포넌트들은 Provider를 통해 bloc에 접근한다. B
 
 #### 초기 상태
 
-![image](../images/bloc_app_start_state.png)
+<img src="../images/bloc_app_start_state.png" width="200" height="400">
 
 #### 동작 완료
 
-![image](../images/bloc_app_bloc_state.png)
-<img src="../images/bloc_app_bloc_state.png" width="300" height="300">
+<img src="../images/bloc_app_bloc_state.png" width="200" height="400">
