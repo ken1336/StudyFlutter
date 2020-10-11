@@ -41,8 +41,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: v1.2
+        tag_name: v1.3
         files: flutter_ci/build/app/outputs/apk/release/*.apk
-        working-directory: ./flutter_ci
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
