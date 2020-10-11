@@ -25,6 +25,9 @@ jobs:
       with:
         flutter-version: '1.9.1+hotfix.6'
         working-directory: ./flutter_ci
+    - run: ls
+    - run: cd flutter_ci
+    - run: ls
     - run: flutter pub get
     - run: flutter test
     - run: flutter build apk
