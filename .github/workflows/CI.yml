@@ -26,7 +26,7 @@ jobs:
     - uses: subosito/flutter-action@v1
       with:
         flutter-version: '1.9.1+hotfix.6'
-    - run: ls
+    - run: flutter upgrade
       working-directory: ./flutter_ci
     - run: flutter pub get
       working-directory: ./flutter_ci
