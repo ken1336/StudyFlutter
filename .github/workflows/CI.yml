@@ -36,12 +36,12 @@ jobs:
       working-directory: ./flutter_ci
   #  - run: flutter test
   #    working-directory: ./flutter_ci
-    - run: flutter build apk
+    - run: flutter build apk --split-per-abi
       working-directory: ./flutter_ci
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
-        tag_name: v1.1
+        tag_name: v1.2
         files: build/app/outputs/apk/release/*.apk
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
