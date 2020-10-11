@@ -40,6 +40,7 @@ jobs:
       working-directory: ./flutter_ci
     - name: Release
       uses: softprops/action-gh-release@v1
+      working-directory: ./flutter_ci
       with:
         tag_name: v1.2
         files: build/app/outputs/apk/release/*.apk
