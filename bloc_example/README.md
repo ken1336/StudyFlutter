@@ -97,7 +97,6 @@ RestState 클래스는 BLoC에서 관리하는 상태 클래스이다.
 RestEvent 클래스는 BLoC에 전달되는 event 클래스이다. 슈퍼 클래스인 RestEvent를 추상화 하여 RestEvent들을 정의하였다. event클래스 자체에는 아무 기능이 없지만, ui에서 event가 발생했을때 이를 BLoC에 전달하기 위해 사용한다. Equatable 클래스를 상속받아 자식 클래스들끼리 비교할 수 있도록 했다.
 
 
-
 #### RestBloc
 
 Rest API통신을 BLoC pattern을 사용하여 구현하기 위한 state, event, 데이터 모델, repository가 완성되었다.

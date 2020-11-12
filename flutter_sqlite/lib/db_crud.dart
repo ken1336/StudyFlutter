@@ -1,12 +1,17 @@
-import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:async';
+import 'package:flutter_sqlite/Dog.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+class MinTestDB{
 
-  final database = openDatabase(
+  var database;
+  MinTestDB(){
+    _initDB();
+  }
+
+void _initDB() async{
+    database = openDatabase(
     // 데이터베이스 경로를 지정합니다. 참고: `path` 패키지의 `join` 함수를 사용하는 것이
     // 각 플랫폼 별로 경로가 제대로 생성됐는지 보장할 수 있는 가장 좋은 방법입니다.
     join(await getDatabasesPath(), 'doggie_database.db'),
@@ -21,8 +26,11 @@ void main() async {
     // 수행하기 위한 경로를 제공합니다.
     version: 1,
   );
+}
 
-  Future<void> insertDog(Dog dog) async {
+
+
+Future<void> insertDog(Dog dog) async {
     // 데이터베이스 reference를 얻습니다.
     final Database db = await database;
 
@@ -80,56 +88,5 @@ void main() async {
       // Dog의 id를 where의 인자로 넘겨 SQL injection을 방지합니다.
       whereArgs: [id],
     );
-  }
-
-  var fido = Dog(
-    id: 0,
-    name: 'Fido',
-    age: 35,
-  );
-
-  // 데이터베이스에 dog를 추가합니다.
-  await insertDog(fido);
-
-  // dog 목록을 출력합니다. (지금은 Fido만 존재합니다.)
-  print(await dogs());
-
-  // Fido의 나이를 수정한 뒤 데이터베이스에 저장합니다.
-  fido = Dog(
-    id: fido.id,
-    name: fido.name,
-    age: fido.age + 7,
-  );
-  await updateDog(fido);
-
-  // Fido의 수정된 정보를 출력합니다.
-  print(await dogs());
-
-  // Fido를 데이터베이스에서 제거합니다.
-  await deleteDog(fido.id);
-
-  // dog 목록을 출력합니다. (비어있습니다.)
-  print(await dogs());
-}
-
-class Dog {
-  final int id;
-  final String name;
-  final int age;
-
-  Dog({this.id, this.name, this.age});
-
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'age': age,
-    };
-  }
-
-  // 각 dog 정보를 보기 쉽도록 print 문을 사용하여 toString을 구현하세요
-  @override
-  String toString() {
-    return 'Dog{id: $id, name: $name, age: $age}';
   }
 }
