@@ -1,14 +1,13 @@
 import 'package:meta/meta.dart';
 
-class Dog {
+
+class TestPerson {
   final int id;
   final String name;
   final int age;
-  Dog({
-    @required this.id,
-    @required this.name,
-    @required this.age,
-  });
+
+  TestPerson({this.id, this.name, this.age});
+
   Map<String, dynamic> toMap() {
     return {
       'id': id,
